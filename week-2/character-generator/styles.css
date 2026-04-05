@@ -3,9 +3,250 @@
   Chapter 1
   Programming Assignment
 
-  Author:
-  Date:
-  Filename:
+  Author: Clifford Smith
+  Date: 4/3/26
+  Filename: styles.css
 */
 
-/* Your CSS goes here */
+/* === RESET & BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-deep:      #07070f;
+  --bg-panel:     #110a22;
+  --bg-input:     #0c0819;
+  --border-dim:   #2e1a50;
+  --border-gold:  #c9a84c;
+  --gold:         #d4af37;
+  --gold-glow:    rgba(212, 175, 55, 0.25);
+  --purple-mid:   #6a1b9a;
+  --purple-light: #9b7fd4;
+  --text-bright:  #ede8f5;
+  --text-muted:   #7a6a99;
+}
+
+body {
+  background-color: var(--bg-deep);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, #1c0840 0%, var(--bg-deep) 65%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 20px 80px;
+  font-family: 'Crimson Text', Georgia, serif;
+  color: var(--text-bright);
+}
+
+/* === LAYOUT === */
+#mainContainer {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* === HEADER === */
+header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow:
+    0 0 12px var(--gold-glow),
+    0 0 30px var(--gold-glow);
+  letter-spacing: 0.08em;
+}
+
+.subtitle {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-top: 6px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+/* === FORM === */
+form {
+  background: linear-gradient(160deg, #1a0d30, var(--bg-panel));
+  border: 1px solid var(--border-dim);
+  border-radius: 12px;
+  padding: 36px 32px;
+  box-shadow:
+    0 0 40px rgba(106, 27, 154, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--purple-light);
+  margin-top: 22px;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 11px 14px;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px;
+  color: var(--text-bright);
+  font-size: 1rem;
+  font-family: 'Crimson Text', serif;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  appearance: none;
+}
+
+input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--border-gold);
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+
+select option {
+  background-color: var(--bg-panel);
+  color: var(--text-bright);
+}
+
+#generateHero {
+  display: block;
+  width: 100%;
+  margin-top: 32px;
+  padding: 14px;
+  background: linear-gradient(135deg, #3b1460, var(--purple-mid));
+  color: var(--gold);
+  border: 1px solid var(--border-gold);
+  border-radius: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.1s;
+}
+
+#generateHero:hover {
+  background: linear-gradient(135deg, var(--purple-mid), #8b2fc9);
+  box-shadow: 0 0 20px var(--gold-glow), 0 0 40px rgba(106, 27, 154, 0.3);
+}
+
+#generateHero:active {
+  transform: scale(0.98);
+}
+
+/* === CHARACTER CARD === */
+.character-card {
+  margin-top: 36px;
+  background: linear-gradient(160deg, #1a0d30, var(--bg-panel));
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 32px 28px;
+  box-shadow:
+    0 0 30px var(--gold-glow),
+    0 0 60px rgba(106, 27, 154, 0.2);
+  animation: rise 0.4s ease forwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-dim);
+  margin-bottom: 22px;
+}
+
+.class-icon {
+  display: block;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 8px var(--gold-glow));
+}
+
+.character-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.7rem;
+  color: var(--gold);
+  text-shadow: 0 0 12px var(--gold-glow);
+  letter-spacing: 0.06em;
+}
+
+.card-divider {
+  display: block;
+  color: var(--border-dim);
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  margin-top: 10px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(74, 32, 112, 0.15);
+  border-left: 3px solid var(--border-dim);
+  border-radius: 0 4px 4px 0;
+}
+
+.stat-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--purple-light);
+}
+
+.stat-value {
+  font-size: 1.05rem;
+  color: var(--text-bright);
+}
+
+.card-footer {
+  text-align: center;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-dim);
+}
+
+.card-motto {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
