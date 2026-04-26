@@ -3,9 +3,423 @@
   Chapter 2
   Programming Assignment
 
-  Author:
-  Date:
-  Filename:
+  Author: Clifford Smith
+  Date: 4/24/26
+  Filename: styles.css
 */
 
-/* Add your CSS styles here */
+/* === RESET & ROOT === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black:       #080808;
+  --deep:        #111010;
+  --panel:       #181614;
+  --border:      #2a2420;
+  --gold:        #c9973a;
+  --gold-light:  #e8b86d;
+  --gold-glow:   rgba(201, 151, 58, 0.2);
+  --crimson:     #8b1a1a;
+  --crimson-mid: #a52020;
+  --white:       #f5f0e8;
+  --muted:       #7a6e62;
+  --success-bg:  #0d1f0d;
+  --error-bg:    #1f0d0d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+/* === HERO === */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transform: scale(1.04);
+  animation: heroZoom 8s ease forwards;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1.0); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.5) 40%, rgba(8,8,8,0.15) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px 72px;
+  animation: fadeUp 1.2s ease 0.3s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.hero-title span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 28px;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.hero-divider span:not(.diamond) {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.hero-divider span:first-child {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+.diamond {
+  color: var(--gold);
+  font-size: 0.5rem;
+}
+
+/* === RESERVATION SECTION === */
+.reservation-section {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 80px 24px 100px;
+  text-align: center;
+  animation: fadeUp 1s ease 0.1s both;
+}
+
+.section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.section-intro {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 48px;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === FORM CARD === */
+.form-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 48px 44px;
+  box-shadow:
+    0 0 60px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(201,151,58,0.08);
+}
+
+.form-group {
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 4px;
+  color: var(--white);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  transition: border-color 0.3s;
+  outline: none;
+  appearance: none;
+}
+
+input[type="text"]::placeholder {
+  color: var(--muted);
+  font-style: italic;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-bottom-color: var(--gold);
+}
+
+select {
+  cursor: pointer;
+  background-color: var(--panel);
+}
+
+select option {
+  background-color: var(--panel);
+  color: var(--white);
+}
+
+/* === BUTTON === */
+button[type="submit"] {
+  width: 100%;
+  margin-top: 16px;
+  padding: 18px 32px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 0 30px var(--gold-glow);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+button[type="submit"]:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+/* === MESSAGES === */
+.message {
+  margin-top: 28px;
+  padding: 18px 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  border-left: 3px solid;
+  animation: fadeUp 0.4s ease both;
+}
+
+.message.hidden {
+  display: none;
+}
+
+.message.success {
+  background: var(--success-bg);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+.message.error {
+  background: var(--error-bg);
+  border-color: var(--crimson-mid);
+  color: #e07070;
+}
+
+.message.pending {
+  background: rgba(201, 151, 58, 0.05);
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 48px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.footer-name span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.footer-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.footer-copy {
+  font-size: 0.6rem;
+  color: #3a3530;
+  letter-spacing: 0.1em;
+}
+
+/* === MEDIA QUERIES === */
+@media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+    min-height: 400px;
+  }
+
+  .hero-content {
+    padding: 0 20px 52px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .reservation-section {
+    padding: 60px 20px 80px;
+  }
+
+  .form-card {
+    padding: 36px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 60vh;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hero-divider span:not(.diamond) {
+    width: 36px;
+  }
+
+  .form-card {
+    padding: 28px 20px;
+  }
+
+  .section-intro {
+    font-size: 1rem;
+  }
+
+  button[type="submit"] {
+    font-size: 0.6rem;
+    padding: 16px 24px;
+  }
+
+  .footer-name {
+    font-size: 1.3rem;
+  }
+
+  .footer-sub {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+  }
+}
