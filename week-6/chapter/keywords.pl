@@ -1,4 +1,4 @@
-#!"D:\xampp\perl\bin\perl.exe"
+#!C:\xampp\perl\bin\perl.exe
 
 #Confirm that perl is located in the /usr/bin/perl folder
 #of your Web server
