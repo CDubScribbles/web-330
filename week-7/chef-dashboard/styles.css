@@ -3,9 +3,344 @@
   Chapter 3
   Programming Assignment
 
-  Author:
-  Date:
-  Filename:
+  Author: Clifford Smith
+  Date: 5/10/26
+  Filename: styles.css
 */
 
-/* Add your CSS styles here */
+/* === RESET & ROOT === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black:        #090909;
+  --deep:         #111111;
+  --panel:        #161614;
+  --card:         #1c1b18;
+  --border:       #2e2b24;
+  --gold:         #c9973a;
+  --gold-light:   #e8c47a;
+  --gold-glow:    rgba(201, 151, 58, 0.15);
+  --crimson:      #7a1414;
+  --crimson-mid:  #a02020;
+  --crimson-glow: rgba(160, 32, 32, 0.15);
+  --white:        #f2ede4;
+  --muted:        #6e6658;
+  --text:         #d4cfc6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--text);
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === HEADER === */
+header {
+  text-align: center;
+  padding: 72px 24px 56px;
+  background:
+    radial-gradient(ellipse at top, rgba(201,151,58,0.07) 0%, transparent 65%),
+    var(--black);
+  border-bottom: 1px solid var(--border);
+  animation: fadeDown 1s ease both;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-bottom: 32px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.divider span:not(.diamond) {
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.divider span:first-child {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+.diamond {
+  color: var(--gold);
+  font-size: 0.45rem;
+}
+
+/* === MAIN === */
+main {
+  flex: 1;
+  padding: 64px 32px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* === CHEF GRID === */
+.chef-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* === CHEF CONTAINER (professor's class name) === */
+.chef-container {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease,
+              box-shadow 0.3s ease, border-color 0.3s ease;
+  animation: cardInit 0.4s ease both;
+}
+
+@keyframes cardInit {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.chef-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,151,58,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.chef-container.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,151,58,0.1);
+}
+
+.chef-container.revealed:hover {
+  border-color: rgba(201,151,58,0.3);
+  box-shadow: 0 12px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,151,58,0.25),
+              0 0 30px var(--gold-glow);
+  transform: translateY(-4px);
+}
+
+/* === LOADING STATE === */
+.loading-state {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === CHEF CONTENT (fulfilled) === */
+.chef-content {
+  padding: 36px 32px;
+  width: 100%;
+  height: 100%;
+  animation: revealUp 0.5s ease both;
+}
+
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.chef-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: rgba(201,151,58,0.15);
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.chef-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+}
+
+.card-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0.7;
+}
+
+.chef-details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.detail-value {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* === ERROR CONTENT (rejected) === */
+.error-content {
+  padding: 36px 32px;
+  text-align: center;
+  animation: revealUp 0.5s ease both;
+}
+
+.error-icon {
+  font-size: 1.8rem;
+  color: var(--crimson-mid);
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+.error-label {
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--crimson-mid);
+  margin-bottom: 12px;
+}
+
+.error-message {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.chef-container.revealed:has(.error-content) {
+  border-color: rgba(160,32,32,0.3);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(160,32,32,0.15),
+              0 0 30px var(--crimson-glow);
+}
+
+.chef-container.revealed:has(.error-content):hover {
+  border-color: rgba(160,32,32,0.5);
+  box-shadow: 0 12px 50px rgba(0,0,0,0.6), 0 0 0 1px rgba(160,32,32,0.3),
+              0 0 40px var(--crimson-glow);
+  transform: translateY(-4px);
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 28px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .chef-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  main {
+    padding: 48px 24px 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 48px 20px 40px;
+  }
+
+  .chef-content,
+  .error-content {
+    padding: 28px 24px;
+  }
+}

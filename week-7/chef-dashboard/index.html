@@ -1,23 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-  <!--
-    Pragmatic JavaScript
-    Chapter 3
-    Programming Assignment
+    <!--
+      Pragmatic JavaScript
+      Chapter 3
+      Programming Assignment
 
-    Author:
-    Date:
-    Filename:
-  -->
+      Author: Clifford Smith
+      Date: 5/10/26
+      Filename: index.html
+    -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chef Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
-    <div id="error" hidden></div>
-    <div id="chef1" class="chef-container"></div>
-    <div id="chef2" class="chef-container"></div>
-    <div id="chef3" class="chef-container"></div>
+
+    <header>
+      <p class="eyebrow">Chapter 3 · JavaScript Promises</p>
+      <h1>The Kitchen Council</h1>
+      <p class="subtitle">Three chefs. Three promises. No guarantees.</p>
+      <div class="divider">
+        <span></span><span class="diamond">◆</span><span></span>
+      </div>
+    </header>
+
+    <main>
+      <div class="chef-grid">
+        <div id="error" hidden></div>
+        <div id="chef1" class="chef-container">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Summoning Chef One…</p>
+          </div>
+        </div>
+        <div id="chef2" class="chef-container">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Summoning Chef Two…</p>
+          </div>
+        </div>
+        <div id="chef3" class="chef-container">
+          <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Summoning Chef Three…</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2026 The Kitchen Council &nbsp;·&nbsp; All Promises Pending</p>
+    </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
