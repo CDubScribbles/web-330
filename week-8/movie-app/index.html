@@ -1,31 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <!--
       Pragmatic JavaScript
       Chapter 4
       Programming Assignment
 
-      Author:
-      Date:
-      Filename:
+      Author: Clifford Smith
+      Date:   5/17/26
+      Filename: index.html
     -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinematheque</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
+
+    <header>
+      <p class="eyebrow">Chapter 4 · Async/Await</p>
+      <h1>Cinematheque</h1>
+      <p class="subtitle">A curated archive of cinema's finest.</p>
+    </header>
+
     <div class="form-container">
       <form id="movie-form">
-        <input type="text" id="title-input" placeholder="Enter movie title" />
-        <button type="submit">Search</button>
+        <div class="input-wrapper">
+          <input type="text" id="title-input" placeholder="Enter a film title…" autocomplete="off" />
+          <button type="submit">
+            <span class="btn-text">Search</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+        <p class="hint">Try: The Godfather, Inception, Spirited Away, Parasite, The Shawshank Redemption</p>
       </form>
-      <div id="movie-info">
-        <h2 id="movie-title"></h2>
-        <p id="movie-director"></p>
-        <p id="movie-year"></p>
-        <p id="movie-synopsis"></p>
+
+      <div id="movie-info" class="hidden">
+        <div class="film-strip">
+          <span></span><span></span><span></span>
+          <span class="strip-label">NOW SHOWING</span>
+          <span></span><span></span><span></span>
+        </div>
+        <div class="movie-body">
+          <h2 id="movie-title"></h2>
+          <div class="meta-row">
+            <p id="movie-director"></p>
+            <p id="movie-year"></p>
+          </div>
+          <div class="divider"></div>
+          <p id="movie-synopsis"></p>
+        </div>
       </div>
-      <p id="error-message"></p>
+
+      <p id="error-message" class="hidden"></p>
     </div>
+
+    <footer>
+      <p>© 2026 Cinematheque &nbsp;·&nbsp; All Titles Pending</p>
+    </footer>
+
     <script src="script.js"></script>
   </body>
 </html>
