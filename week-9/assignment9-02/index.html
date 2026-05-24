@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    Pragmatic JavaScript
+    Week 9 — Guided AI-Orchestrated Build
+    Programming Assignment
+
+    Author: Clifford Smith
+    Date:   5/24/26
+    Filename: index.html
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>National Parks Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <p class="eyebrow">Week 9 · Guided AI Build</p>
+    <h1>National Parks<br><span>Explorer</span></h1>
+    <p class="subtitle">Search the archive. Discover the wild.</p>
+  </header>
+
+  <main>
+    <div class="search-container">
+      <form id="park-form">
+        <div class="input-row">
+          <input
+            type="text"
+            id="park-input"
+            placeholder="Enter a park name…"
+            autocomplete="off"
+          />
+          <button type="submit">
+            <span class="btn-label">Search</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+        <p class="hint">Try: Yellowstone, Yosemite, Zion, Acadia, Grand Canyon</p>
+      </form>
+    </div>
+
+    <!-- Result and error display -->
+    <div id="park-result" class="park-result hidden"></div>
+    <p id="error-message" class="error-message hidden"></p>
+  </main>
+
+  <footer>
+    <p>© 2026 National Parks Explorer &nbsp;·&nbsp; All Parks Pending</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

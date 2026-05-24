@@ -1,0 +1,356 @@
+/*
+  Pragmatic JavaScript
+  Week 9 — Guided AI-Orchestrated Build
+  Programming Assignment
+
+  Author: Clifford Smith
+  Date:   5/24/26
+  Filename: styles.css
+*/
+
+/* === RESET & ROOT === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --earth:        #1a1410;
+  --bark:         #231d17;
+  --stone:        #2e2620;
+  --border:       #3d332a;
+  --rust:         #b85c2a;
+  --rust-light:   #d4784a;
+  --rust-glow:    rgba(184, 92, 42, 0.15);
+  --sage:         #6b7c5a;
+  --cream:        #f0e8d4;
+  --text:         #c8bfb0;
+  --muted:        #6b5f52;
+  --error:        #8b3030;
+  --error-light:  #c05050;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--earth);
+  color: var(--text);
+  font-family: 'Source Serif 4', serif;
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image:
+    radial-gradient(ellipse at 10% 0%, rgba(184,92,42,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 90% 100%, rgba(107,124,90,0.04) 0%, transparent 55%);
+}
+
+/* === HEADER === */
+header {
+  text-align: center;
+  padding: 72px 24px 56px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  animation: fadeDown 0.9s ease both;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.01) 40px,
+    rgba(255,255,255,0.01) 41px
+  );
+  pointer-events: none;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  font-family: 'Teko', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-family: 'Teko', sans-serif;
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cream);
+  line-height: 0.88;
+  margin-bottom: 24px;
+}
+
+header h1 span {
+  color: var(--rust-light);
+  display: block;
+  font-weight: 300;
+}
+
+.subtitle {
+  font-style: italic;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+/* === MAIN === */
+main {
+  flex: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 56px 32px 80px;
+  width: 100%;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === SEARCH FORM === */
+.search-container {
+  margin-bottom: 48px;
+}
+
+#park-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-row {
+  display: flex;
+  border: 1px solid var(--border);
+  background: var(--bark);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-row:focus-within {
+  border-color: var(--rust);
+  box-shadow: 0 0 0 1px var(--rust), 0 0 24px var(--rust-glow);
+}
+
+#park-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 18px 20px;
+  color: var(--cream);
+  font-family: 'Source Serif 4', serif;
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0.03em;
+}
+
+#park-input::placeholder {
+  color: var(--muted);
+}
+
+button[type="submit"] {
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border);
+  padding: 18px 24px;
+  color: var(--rust-light);
+  font-family: 'Teko', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.3s, color 0.3s;
+  white-space: nowrap;
+}
+
+button[type="submit"]:hover {
+  background: var(--rust);
+  color: var(--cream);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s;
+}
+
+button[type="submit"]:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.hint {
+  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+/* === PARK RESULT === */
+.park-result {
+  animation: fadeUp 0.5s ease both;
+}
+
+.park-result.hidden {
+  display: none;
+}
+
+.park-card {
+  border: 1px solid var(--border);
+  background: var(--bark);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.park-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: rgba(184,92,42,0.3);
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(184,92,42,0.1),
+    0 0 30px var(--rust-glow);
+}
+
+/* === PARK HEADER === */
+.park-header {
+  background: var(--stone);
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.park-year {
+  font-family: 'Teko', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--rust);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.park-name {
+  font-family: 'Teko', sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--cream);
+  line-height: 0.9;
+  margin-bottom: 10px;
+}
+
+.park-state {
+  font-family: 'Teko', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+/* === PARK BODY === */
+.park-body {
+  padding: 28px 32px 32px;
+}
+
+.park-description {
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--text);
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+
+.park-highlight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  background: var(--stone);
+}
+
+.highlight-label {
+  font-family: 'Teko', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--rust);
+  white-space: nowrap;
+}
+
+.highlight-value {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--cream);
+  letter-spacing: 0.03em;
+}
+
+/* === ERROR === */
+.error-message {
+  padding: 18px 20px;
+  border-left: 3px solid var(--error-light);
+  background: rgba(139,48,48,0.1);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--error-light);
+  line-height: 1.6;
+  animation: fadeUp 0.4s ease both;
+}
+
+.error-message.hidden {
+  display: none;
+}
+
+/* === FOOTER === */
+footer {
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  font-family: 'Teko', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  header { padding: 52px 20px 40px; }
+  main { padding: 40px 20px 60px; }
+  .park-header { padding: 22px 24px 20px; }
+  .park-body { padding: 22px 24px 28px; }
+  button[type="submit"] { padding: 18px 16px; }
+}
